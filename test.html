@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #btn{
+        width: 100%;
+        height: 50px;
+        background: red;
+    }
+</style>
+<body>
+    <div>htm1</div>
+    <div>htm2</div>
+    <div>htm3</div>
+    <div id="btn"> htm4</div>
+    <button >点击测试</button>
+    <script>
+        
+     
+
+
+
+
+        // console.log(undefined === false)
+    
+        // var arr= [1,2,3,4,5]
+        // var obj={name:123}
+        // console.log([].slice.call(obj))
+       
+
+    //项目路由跳转
+
+    // const checkPaths = ["/trade","/pay","/center"]
+    // router.beforeEach(async(to,from,next)=>{
+    //     //目标路由地址
+    //     const targetPath = to.path 
+    //     //获取需要检测地址
+    //     const needPath = checkPaths.some(path=>targetPath.startWith(path))
+    //     //获取用户信息对象及token数据
+    //     let {userInfo,token} = store.state.userInfo
+    //     //判断是否登陆
+    //     if(userInfo.name){
+    //         //放行
+    //         next()
+    //         //没有必要后面执行
+    //         return
+    //     }
+    //     //没有用户信息，没有登陆，判断token
+    //     if(token){
+    //         try{
+    //             //自动登陆
+    //             await store.dispath("getUserInfo")
+    //             //此时自动登陆成功，正常方向
+    //             next()
+    //             //没有必要执行后面
+    //             return
+    //         }catch(error){
+    //             //直接退出登陆
+    //             store.dispath("logout")
+    //             //提示信息
+    //             Message.error("请重新登陆")
+    //             //进入登录界面
+    //             next("/login?redirect"+to.path)
+    //             return
+    //         }
+    //     }
+    
+    //     //没有用户信息 没有token 检测路由地址, 谁都能登陆
+    //     if(!needPath){
+    //         //不需要检测
+    //         next()
+    //         return
+    //     }
+    //     next("/login?redirect="+to.path)
+    // })
+
+
+
+    // //加强版
+    // function axios({url,params={},data={},method="GET"}){
+    //     return new Promise((resolve,reject)=>{
+            
+    //         const request = new XMLHttpRequest
+            
+    //         let queryStr =Object.keys(params).reduce((pre,key)=>{
+    //             pre += `&${key}=${params[key]}`
+    //             return 
+    //         },"")
+
+    //         if(queryStr.length>0){
+    //             queryStr = queryStr.substring(1)
+    //             url +="?" + queryStr
+    //         }
+
+    //         method = method.toUpperCase()
+
+    //         request.open(method,url,true)
+
+    //         request.onreadystatechange= function(){
+    //             if(request.readyState !== 4){
+    //                 return
+    //             }
+
+    //             if(request.status >=200 && request.status<300){
+    //                 const responseData={
+    //                     data:JSON.parse(request.response),
+    //                     status:request.status,
+    //                     statusText:request.statusText
+    //                 }
+    //             }else{
+    //                 const error =new Error("request error status"+ request.stutas)
+    //                 reject(error)
+    //             }
+    //         }
+
+    //         if(method === "POST" || method === "PUT" || method === "DELETE"){
+    //             request.setRequestHeader("Content-Type","application/json;charset=utf-8")
+    //             const dataJson = JSON.stringify(data)
+    //             request.send(dataJson)
+    //         }else{
+    //             request.send(null)
+    //         }
+
+    //     })
+    // }
+
+    //简洁版
+    // function ajax(url){
+    //     return new Promise((resolve,reject)=>{
+    //         const xhr = new XMLHttpRequest
+            
+    //         xhr.open("GET",url,true)
+
+    //         xhr.onreadystatechange = function(){
+    //             if(xhr.readyState !== 4){
+    //                 return
+    //             }
+    //         }
+
+    //         if(xhr.status >=200 && xhr.status<300){
+    //             resolve(JSON.parse(xhr.responseText))
+    //         }else{
+    //             reject(new Error("request error status" + request.status))
+    //         }
+    //         xhr.send(null)
+    //     })
+    // }
+
+
+
+
+
+
+    //    let btn = document.getElementById("btn")
+    //     btn.onclick=function(){
+    //         console.log(1)
+    //     }
+
+    //     let obj={
+    //         a:1
+    //     }
+    //     obj2 = obj
+    //    result = Object.is(
+    //         obj,
+    //        obj2
+    //     )
+    //     console.log(result)
+        // let result =Array.of({name:123})
+        // console.log(result)
+
+        // function myIterator(arr){
+        //     let nextIndex = 0 //指针初始位置
+        //     return {
+        //         //遍历器对象
+        //         next:function(){
+        //             return nextIndex < arr.length?{
+        //                 value:arr[nextIndex++],
+        //                 done:false
+        //             }:{value:undefined,done:true}
+        //         }
+        //     }
+        // }
+
+        // let arr =[1,3,3,4,5,7]
+        // let interatorObj = myIterator(arr)
+        // console.log(interatorObj.next())
+        // console.log(interatorObj.next())
+        // console.log(interatorObj.next())
+        // console.log(interatorObj.next())
+        // console.log(interatorObj.next())
+        // console.log(interatorObj.next())
+        // console.log(interatorObj.next())
+        // console.log(interatorObj.next())
+
+// let symbol = Symbol("one")
+// let symbol2 = Symbol("one1")
+//     console.log(symbol2)
+//     let obj={
+//         userName:"sdf",
+//         age:20
+//     }
+//     obj[symbol2]="hello"
+//     console.log(obj[symbol2])
+//     console.log(obj)
+    //    function fn(...args){
+    //        console.log(...args)
+    //    }
+
+
+    //     fn(1,2,3,4)
+
+    //    let result1 =  Promise.resolve(1)
+    //    let result2 =  Promise.resolve(2)
+    //    let result3 =  Promise.resolve(3)
+    //    let result4 =  Promise.resolve(4)
+
+    //   let result = Promise.all([result1,result2,result3,result4])
+    //     console.log(result.then(value=>{
+    //         console.log("all",value)
+    //     }))
+    //    clearTimeout()
+        // function createObj() {
+        //     var instance = null  //只执行进来的那次
+        //     return function (name) {
+        //         if (!instance) {//instance后面会有值覆盖
+        //             instance = new Object()
+        //             instance.name = name
+        //         }
+        //         return instance
+        //     }
+        // }
+        // var getObj = createObj()
+        // var obj3 = getObj("小明")
+        // var obj4 = getObj("小红")
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+     function fn(x,y){
+      console.log(x,y)
+    }
+    var obj={
+        a:123
+    }
+    //    fn.call([],10,20)
+    
+
+    // function call(fn,obj,...args){
+    //     if(obj === null || obj === undefined){
+    //         obj = obj || window // ||运算符中null和undefined都是false，就使用后面的
+    //     }
+       
+    //     obj.template = fn //fn是函数,存在属性template中，添加属性template保存fn
+    //     const result =obj.template(...args) //然后通过对象.属性调用改变this
+    //     delete obj.template
+    //     return result //返回函数调用的结果
+    // }
+
+    // call(fn,obj,10,20,30)
+
+
+    //apply
+    function apply(fn,obj,args){
+        if(obj === null || obj === undefined){
+            obj = obj || window // ||运算符中null和undefined都是false，就使用后面的
+        }
+       
+        obj.template = fn //fn是函数,存在属性template中，添加属性template保存fn
+        const result =obj.template(...args) //然后通过对象.属性调用改变this
+        delete obj.template
+        return result //返回函数调用的结果
+    }
+
+    apply(fn,obj,[10,20,30])
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+红色文件： modified:   test.txt //进入过暂存区或者本地库，在工作区进行修改过的文件
+不加 modified的红色文件属于工作区未被修改过的文件
+绿色文件：加入到暂存区，git add 叫做添加也叫跟踪，绿色modified修改过并加入到暂存的文件   
+
+加入到暂存区：diff和rm都要添加--cached在操作
+
+一、比较修改内容：
+git diff  //工作区和本地库 同名文件对比
+git diff --cached //暂存区和本地库对比
+
+git add filename //添加到索引区
+
+git checkout -- <file> 不进行追踪
+
+二、更新最后的提交：
+1、提交 git commit -m "提交 名称"
+2、git commit --amend //后来修改的内容不做新的记录，而是加到上一次提交记录中
+3、git commit -am "commit message" [--amend] //追加记录并且添加一条提交信息
+
+步骤：
+注意：本地库要有提交的该文件
+1、git add .
+2、git commit --amend //amend修改的意思
+3、git statis modified:   test.txt
+4、git log
+
+进入vim编辑器， 点击i进行编辑，esc :wq保存
+
+三、git文件操作
+git add 文件
+git add .
+git rm //删除文件
+git mv //文件更名
+步骤：(都要在暂存区完成)
+1、git add .
+2、git status
+3、git mv txt.htm txt.html
+4、git status
+5、git rm --cached style.css
+6、git status
+
+四、分支
+git branch //查看分支
+git branch -a //查看所有分支，包括远端分支
+git branch dev remotes/origin/dev  //以远程分支为准(根据远程分支名)，创建本地分支
+git checkout dev //进入分支
+git remote -v  //查看远程服务器状态，push时候提交到哪个服务器
+git push origin dev //推到远端分支
+
+
+git branch -d dev //删除分支
+五、版本回退
+commit后，reset只是修改指针，保存库中数据一直有
+git reset --hard HEAD`3 //回到当前版本前面第3个版本，数据库记录还在，只是git log看不到
+
+git reset --hard 编码名  //回退回去ref log可以看到
+
+六、分支冲突
+主分支和开发分支，对同名文件进行merge合并，出现分支冲突
+
+
+七、版本返回过去
+git reset --hard HEAD //回到数据库最新的版本
+git reset --hard HEAD~ //回到数据库最新的上一个版本
+git reset --hard HEAD~3 //回到数据库最近的第3版本
+
+git reset --hard 编码名  //回退回你指定的版本
+
+八、tag标签，版本号管理
+1.1.4
+1、git tag
+2、git tag v1.0.0
+3、git tag
+
+步骤
+1、git add .
+2、git commit -m “xxx”
+3、git tag v1.0.1 //每次提交后修改
+4、git tag

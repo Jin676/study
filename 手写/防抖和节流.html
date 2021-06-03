@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //节流，第一时间调用，并且按照固定的频率
+        // function throttle(callback,delay){//delay间隔时间
+        //     let start = 0 //第一时间调用，初始时间
+            
+        //     return function(event){
+        //         const current = Date.now()
+        //         if(current - start>delay){
+        //             callback.call(this,event)
+        //             //指定为start
+        //             start = current
+        //         }
+        //     }
+
+        // }
+
+        //防抖，点击就取消，点击停止多少s后执行
+        //步骤：1、上来就取消定时器，2、定时器中调用函数改变this，定时器中删除定时器id
+        function debounce(callback,delay){
+            return function(event){
+                if(callback.timeId){
+                    clearTimeout(callback.timeId)
+                }
+                callback.timeId = setTimeout(()=>{
+                 
+                    callback.call(this,event)
+                    delete callback.timeId
+                },delay)
+            }
+        }
+        debounce(()=>{
+         
+        },1000)(123)
+    </script>
+</body>
+</html>
