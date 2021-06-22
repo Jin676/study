@@ -1,0 +1,1 @@
+<view class="data-v-2db34f38"><u-navbar vue-id="3ba53522-1" is-back="{{false}}" title="自定义title" background="{{background}}" title-color="#FFFFFF" border-bottom="{{false}}" class="data-v-2db34f38" bind:__l="__l"></u-navbar></view>

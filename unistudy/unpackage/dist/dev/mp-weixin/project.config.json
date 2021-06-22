@@ -1,0 +1,28 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "postcss": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "",
+  "appid": "wxb68298c8062c4164",
+  "projectname": "unistudy",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": []
+    }
+  }
+}
