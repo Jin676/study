@@ -1,8 +1,232 @@
+### 目录规范
+    components  组件目录 将uni-ui组件uni_modules文件夹复制到下面
+    static  静态资源目录主要是img和icon等等
+    Pages   页面目录
+    Data    测试数据目录
+    Mixins  混合
+    Common 公共目录 
+        css 公共的scss文件放入到这里，再在uni.scss中引入
+        js  module.exports暴露该模块,main.js中引入
+
+### 小程序秘钥和id
+    id：wxb68298c8062c4164
+    AppSecret(小程序密钥)：cdcc67686d97461aba9a1a58a95afd3a
+### 全局样式(css)和全局工具类(js)
+    scss全局挂载:
+    $xxx:yyy 定义变量
+    @import "url地址"//引入文件
+    使用 font-size:$test-font-size-base;(变量名)
+
+    js全局挂载(不支持nvue)：
+    common/js/hook.js
+    Vue.prototype.xxx=xxx
+    this.$utools.debounce(xxx)
+
+### 书写要点
+    1、rpx布局
+    2、组件使用
+        长列表用nvue的list组件，app墙瀑布流使用nvue的watefall组件
+    3、尽量使用class选择器样式
+    4.兼容性避免
+    5、flex布局+定位布局    
+
+### nvue注意点
+    1、nvue页面控制显隐只可以使用v-if不可以使用v-show
+    2、nvue页面只能使用flex布局，不支持其他布局
+    3、nvue页面布局排列方向默认竖排
+    4、文字内容、必须只能在<text>组件下
+    5、不支持背景图
+    6、css选择器支持的比较少、只能使用class选择器
+    7、class进行绑定只支持数组语法
+    8、在app.vue中定义全局js，nvue不会生效，globalData和vuex是生效的
+    9、不支持百分比布局
+    10、nvue没有层级概念，不能用z-index调整图层
+
+### 组件注册和引用(Easycom)
+    传统vue组件，需要安装、注册、引用，Easycom合并为一个
+    只需要组件安装在项目的components目录下，并符合components/组件名/组件名称vue/目录结构
+    就可以不用引用、注册、直接在页面中使用
+
+### easycom配置
+"easycom": {
+	  "autoscan": true,
+	  "custom": {
+          //uni-ui
+	    "^uni-(.*)": "@/components/uni_modules/uni-$1/components/uni-$1/uni-$1.vue", 
+        // 匹配components目录内的vue文件
+	    "^vue-file-(.*)": "packageName/path/to/vue-file-$1.vue" // 匹配node_modules内的vue文件
+	  }
+	}
+    注释：当前项目(uni-ui层级演示)
+    components
+        uni_modules
+            uni-badge($1代替-的后面)
+                components
+                    uni-badge
+                     uni-badge.vue
+    uni-$1：$1是不确定的名字文件夹
+    uni-$1.vue： 不确定的vue文件
+
+    注意点：components/Banner/Banner.vue //easycom在这目录下不需要引入直接可以使用，自动配置的
+### u-viewui
+    1、uview-ui文件夹放入根目录
+    2、uni.scss引入样式@import 'uview-ui/theme.scss'; 
+    3、main.js
+        import uView from "uview-ui";
+        Vue.use(uView);
+    4、配置easycom    
+        "easycom": {
+			"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+		}
+
+### h5配置代理
+创建vue.config.js
+module.exports={
+	  //vue-cli3.0 里面的 vue.config.js做配置
+	devServer: {
+	    proxy: {
+	        '/api': {     //这里最好有一个 /
+	            target: 'http://localhost:4000',  // 后台接口域名
+	            ws: true,        //如果要代理 websockets，配置这个参数
+	            secure: false,  // 如果是https接口，需要配置这个参数
+	            changeOrigin: true,  //是否跨域
+	            pathRewrite:{
+	                '^/api':''
+	            }
+	        }
+	    }
+	  }
+}
+发送请求：/api/xxx
+
+### tabBar要点
+    注意：路径千万别带中文，img图片都改成英文否则报错
+    tabBar跳转：只能用swichto和reLaunch
+
+### 真机调试
+    注意：如果没检测到设备
+    找到下面文件D:\Archive\HBuilderX\plugins\launcher\tools\adbs
+    将1.0.31中的文件取出，覆盖adbs
+
+### swiper
+    默认高度：150px或者300rpx
+    image图片mode模式：
+    当src为动态引用时，路径一定要改为组件所在页面的相对路径，填坑完毕
 ### scroll-view要点
     <scroll-view scroll-x="true" class="navScroll" enable-flex :current="navIndex">
     1、enable-flex不加这个flex不生效
     2、:current获取当前点击的id
+    3、不写vh就不会出现滚动条问题，写vh就会出现滚动条问题
+    4、border属性transparnt透明的，可以给边框添加
+    5、如果希望页面高度铺满，需要减去navbar(44px)，如在tabbar页面，再减去tabbar高度(50px)
+### 中间竖线和商品中间的竖线
+    box-shadow: 0 0 6rpx #eee; 点击后10rpx
 
+### 跳转页面传参设置标题
+    :url="`../goods-list/goods-list?navId=${navId}`" //双引号在外边,``在里面
+    页面跳转传参：参数可以在onload中获取
+
+
+### 自定义头部导航栏
+    "navigationStyle":"custom" //自定义头部导航栏，也是取消头部导航
+
+    取消导航栏后，真机情况下app端状态栏会被盖住，不要盖住写的代码显示：
+    <view class="status_bar">  
+	</view>
+    .status_bar {
+      height: var(--status-bar-height);
+      width: 100%;
+     }
+
+### 条件编译
+    #ifdef APP-PLUS //app平台
+    #endif 
+    #ifdef H5  //h5平台
+    #endif 
+    #ifdef MP-WEIXIN //微信
+    #endif 
+
+### 100%高度设置让页面不滑动
+    #ifdef APP-PLUS //app平台
+    height:calc(100vh - 188rpx - 64rpx); //这是减tabbar-nav导航栏-搜索框
+    #endif 
+
+    #ifdef H5  //h5平台
+    height:calc(100vh - 188rpx - 64rpx);  //减去tabbar和navlocation头部导航栏
+    #endif 
+
+### 禁止app端自带的页面回弹
+    配置到page.json的对应style中
+    "app-plus":{
+					// 将回弹属性关掉
+					"bounce":"none"
+				}
+### 预览图片
+         urls:this.urls,//图片路径，要写数组，里面都是图片["dianshi.png","shexiangji.png"]这样的格式
+         current:this.swiperId,//配置当前图片
+    @handleImg(){
+    uni.previewImage({
+				            urls:this.urls,
+							current:this.swiperId,
+                            indicator:"number",//预览图片当前第几张，模拟器不显示，手机会显示
+				            longPressActions: {
+				                itemList: ['发送给朋友', '保存图片', '收藏'],
+				                success: function(data) {
+				                    console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+				                },
+				                fail: function(err) {
+				                    console.log(err.errMsg);
+				                }
+				            }
+				        });
+    }
+
+### 弹出层
+    u-popup打开弹出层
+
+### 下拉刷新和上拉加载
+        1、pages.json中"enablePullDownRefresh": true，开启下拉事件
+        onPullDownRefresh() {//触发下拉刷新
+            console.log('refresh');
+
+            setTimeout(function () {
+                uni.stopPullDownRefresh();//处理完业务，需要停止当前页面下拉刷新
+            }, 1000);
+        }
+
+        
+        data中的page:1
+        onReachBottom() {//触底加载
+            this.page++;
+            if(this.page >=5)return false //下拉5次以后不能再下拉
+            const newList = news.getxxx()
+            let listnew =newlist
+            this.list.push(...listnew)
+            
+        },
+
+        //scroll方法中scrolltolower也可以下拉触底触发,
+        //scroll方法中scrolltoupper也可以上拉刷新
+        //var(-window-top)到头部0
+        
+### uniapp打开第三方网站
+    路由跳转url:写下面子组件地址
+
+    新建一个子组件
+    <web-view src=""url><web-view>//web-view组件
+
+    data(){
+        return{
+            url:“”
+        }
+    }，
+    onload(e){
+        this.url = e.url || "";
+        //e是跳转页面的query参数
+        uni.setNavigationBarTitle({
+            title:'标题名'
+        })
+    }
 
 ### 使用koa搭建服务器
 
@@ -25,6 +249,9 @@
     vue模板解析要比发送块，模板解析时候没有发送请求数据是undefined，生命周期调用watcher-updater更新拿到数据后替换undefined数据
     使用v-if，但是不能和v-for一起用，v-for优先级更高优先使用，
     解决方法：放在父级元素身上
+
+
+
 
 ### 消除滚动条
     ::-webkit-scrollbar
@@ -113,47 +340,6 @@
     }
 
 ### 用户唯一标识和登陆授权信息(不包括唯一标识)    
-登陆授权：    
-4.13以后更新版本的获取用户信息
-绑定一个bindtap=" getUserProfile"事件然后
- getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-        try {  wx.setStorageSync('userInfo', res.userInfo)} catch (e) { }
-      },
-      fail:(err)=>{
-        console.log(err)
-      }
-    })
-  },
-
-授权后持续登陆方式：
-onload中
- if (!wx.getStorageSync('userInfo')) {
-      getUserProfile()
-      return
-    }else{
-      this.setData({
-        userInfo:wx.getStorageSync('userInfo')
-      })
-    }
-
-授权退出：
-loginOut(){
-  this.setData({
-    userInfo:""
-  })
-  wx.removeStorage({
-    key: 'userInfo',
-  })
-},
 
 
 用户唯一标识(支付或者私密数据等等)
@@ -208,3 +394,4 @@ const jwt = require("jsonwebtoken")
 
 //发送请求需要用户登录和cookie
     要求需要id
+

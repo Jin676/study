@@ -1,0 +1,16 @@
+<template>
+	<view class="page">
+		<view><text>123456</text></view>
+		<view><image src="../../static/contact/banner.jpg"></image></view>
+	</view>
+</template>
+
+<script>
+	export default {
+		
+	}
+</script>
+
+<style>
+
+</style>

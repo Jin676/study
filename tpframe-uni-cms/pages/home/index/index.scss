@@ -1,0 +1,133 @@
+.page{
+	background-color: $tpf-bg-color-white-smoke;
+}
+.title {
+	font-size: $tpf-font-size-base;
+	color: #8f8f94;
+}
+.banner-item{
+	width: 100%;
+}
+.swiper{
+	height: 320rpx;
+}
+.nav-wrap{
+	@include tpframe-flex;
+	@include tpframe-padding(0rpx,20rpx,20rpx,20rpx)
+	background-color:$tpf-bg-color-white;
+}
+.nav-item{
+	width: 160rpx;
+	@include tpframe-flex($justifyContent:center);
+	margin-top: 20rpx;
+}
+.nav-ico{
+	width: 120rpx;
+	height:120rpx;
+}
+.nav-txt{
+	font-size: $tpf-font-size-base;
+}
+.index-block{
+	background-color: $tpf-bg-color-white;
+	margin-top: 20rpx;
+}
+.block-title{
+	@include tpframe-flex;
+	height: 100rpx;
+	padding-left: 10rpx;
+	padding-right: 20rpx;
+	border-bottom: 2rpx $tpf-border-color-white-smoke solid;
+}
+.title-l{
+	border-left-color: $tpf-border-color-deep-sky-blue;
+	border-left-width: 6rpx;
+	border-left-style: solid;
+	padding-left: 10rpx;
+	font-size: $tpf-font-size-lg;
+}
+.title-r{
+	border-top: 6rpx #666 solid;
+	border-right: 6rpx #666 solid;
+	width: 16rpx;
+	height: 16rpx;
+	transform:rotate(45deg);
+}
+.news-datetime{
+	font-size: $tpf-font-size-base;
+	color:$tpf-text-color-shallow-grey;
+}
+.news-view{
+	font-size: $tpf-font-size-base;
+	color:$tpf-text-color-shallow-grey;
+}
+.index-content{
+	padding: 10rpx;
+	@include tpframe-flex;
+}
+.case-item{
+	width: 360rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.case-thumb{
+	width: 360rpx;
+	height: 260rpx;
+}
+.case-tit{
+	font-size: $uni-font-size-base;
+	line-height: 60rpx;
+}
+
+.news-item{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.news-thumb{
+	width: 200rpx;
+	image{
+		width: 200rpx;
+		height: 160rpx;
+	}
+}
+.news-info{
+	padding-left: 10rpx;
+	@include tpframe-flex(column,flex-start);
+}
+.news-title{
+	font-size: $tpf-font-size-base*1.2;
+	color: $tpf-border-color-grey;
+	margin-bottom:$tpf-padding-size-base;
+}
+.news-more{
+	width: 500rpx;
+	@include tpframe-flex;
+}
+.video-item{
+	video{
+		width: 730rpx;
+	}
+}
+.photo-item{
+	width: 360rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	image{
+		@include tpframe-container-size(360rpx,280rpx);
+	}
+	.photo-tit{
+		font-size: $tpf-font-size-base;
+		line-height:60rpx;
+	}
+}
+.photo-wrap{
+	display: inline-flex;
+	@include tpframe-padding($top:10rpx,$left:10rpx);
+	.photo-item{
+		margin-right: 10rpx;
+	}
+}

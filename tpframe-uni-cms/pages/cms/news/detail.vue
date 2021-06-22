@@ -1,0 +1,140 @@
+<template>
+  <view class="content">
+    <view class="banner" auto-focus>
+      <image class="banner-img" :src="list.thumb"></image>
+      <!-- <view class="title-area">
+        <text class="title-text">{{list.title}}</text>
+      </view> -->
+    </view>
+    <view class="article-meta">
+      <text class="article-meta-text article-author">{{list.source}}</text>
+      <text class="article-meta-text article-text">发表于</text>
+      <text class="article-meta-text article-time">{{list.datetime}}</text>
+    </view>
+    <view class="article-content">
+      <rich-text :nodes="content" style="font-size: 14px;"></rich-text>
+    </view>
+    <view class="comment-wrap"></view>
+  </view>
+</template>
+
+<script>
+  import htmlParser from '@/common/html-parser'
+  const FAIL_CONTENT = '<p>获取信息失败1</p>';
+  export default {
+    data() {
+      return {
+		  list:[],
+		  content:[]
+      }
+    },
+    onShareAppMessage() {
+      return {
+        title: this.list.title,
+        path: '/pages/detail/detail?query=' + JSON.stringify(this.list)
+      }
+    },
+    onLoad(event) {
+      // 目前在某些平台参数会被主动 decode，暂时这样处理。
+      this.getList(event.id);
+	  
+    },
+    methods: {
+		getList(id){
+			getApp().globalData.$Request.requestAll("/program_posts/getDetail/",{id:id}).then(res=>{
+				
+				let content = FAIL_CONTENT
+				if (res.code == 0) {
+					this.list = res.data[0];
+					content = res.data[0].content
+				}
+				const nodes = htmlParser(content);
+				console.log(htmlParser(content))
+				this.content = nodes;
+			});
+		}
+    }
+  }
+</script>
+
+<style>
+  /* #ifndef APP-PLUS */
+  page {
+    min-height: 100%;
+  }
+
+  /* #endif */
+
+  .banner {
+	  width: 750rpx;
+	  height: 360rpx;
+    position: relative;
+    background-color: #ccc;
+    flex-direction: row;
+    overflow: hidden;
+  }
+	.banner-img{
+		width: 750rpx;
+		height: 360rpx;
+	}
+  .title-area {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    z-index: 11;
+  }
+
+  .title-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    lines: 2;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .article-meta {
+    padding: 10px 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .article-meta-text {
+    color: gray;
+  }
+
+  .article-text {
+    font-size: 12px;
+    line-height: 25px;
+    margin: 0 10px;
+  }
+
+  .article-author {
+    font-size: 15px;
+  }
+
+  .article-time {
+    font-size: 15px;
+  }
+
+  .article-content {
+    font-size: 15px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  /* #ifdef H5 */
+  .article-content {
+    line-height: 1.8;
+  }
+  .img{
+	  max-width: 100%;
+  }
+  .article-content .img{
+    max-width:100% !important;
+  }
+  /* #endif */
+</style>

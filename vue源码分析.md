@@ -56,7 +56,7 @@
     3、 事件指令解析：elmentNode.addEventListener("eventName",callback.bind(vm))
 
 #### 模板解析面试总结(重要)：     
-      1、模板解析只发生在初始化(生命周期created-befremounted中间这个阶段，因为需要data解析模板，这个阶段有data了)显示阶段，解析完后，模板代码没有了
+      1、模板解析只发生在初始化(生命周期created-beforemount中间这个阶段，因为需要data解析模板，这个阶段有data了)显示阶段，解析完后，模板代码没有了
       2、模板解析，研究如何实现初始化显示
       3、解析2种模板语法
           插值语法：操作文本节点：textNode.innerText = 动态值(根据{{a.b}}表达式，去对应data属性中取对应的值)，这里面用到了正则匹配,涉及到了子匹配(大的正则中找一部分)
@@ -122,3 +122,67 @@
     1、数据劫持是vue中用来实现数据绑定的一种技术
     2、基本思想：通过dedineProperty()监视data中所有属性(任意层次)数据的变化，7一旦变化更新界面      
     数据劫持是数据代理的一部分  
+
+### vue的组件中data不能是对象
+    1、组件如果是对象会报错，产生的原因是对象方式会造成全局污染，函数则不会    
+    2、Vue的实例不会报错，Vue的实例则不会报错
+
+### 图片懒加载
+    图片过多影响页面加载速度，因此必须用懒加载
+    <img v-lazy="/static/img/1.png">
+    vue-lazyload    
+
+
+### sync修饰符的使用
+    <!-- :money="money" @update:money='fn' -->
+    <Button :money.sync=""></Button> //.symc === :money="money" + @update:money事件
+
+    :visible.sync="visible" 相当于:visible="visible"+  @update:visible ="visible"
+    //update:是vue隐式添加的属性，用于更新数据，节省了赋值
+
+    this.$emit("update:visible",200) //visible变量就会修改为200
+
+    .sync修饰符作用，可以修改xxx.sync时候xxx的属性
+
+### self修饰符
+    跳过冒泡
+
+
+### 自定义指令
+    1、创建directives文件夹
+    2、创建自定义指令文件，并且暴露
+    export default{
+       bind:function(el,binding){
+        const _ops = binding.value
+        //获取子节点
+        const _c = document.getElementsByClassName(_ops.className)
+        el.children[_ops.currentIndex].className += `${_ops.activeClass}`
+        console.log(el.children[_ops.currentIndex].className += `${_ops.activeClass}`)
+        
+    },
+    update:function(el,binding){
+        const _ops = binding.value
+        const _oOps = binding.oldValue
+        
+        //获取子节点
+        const _c = document.getElementsByClassName(_ops.className)
+        el.children[_oOps.currentIndex].className = `${_oOps.className}`
+        el.children[_ops.currentIndex].className += `${_ops.activeClass}`
+    }
+    }
+    3、引入
+        import NavActive from "@/directives/navActive"
+    4、注册
+        directives:{
+            NavActive
+        }    
+    5、使用 NavActive指令(驼峰命名法，如果有大写字符需要-连接并且改成小写)
+       <div class="nav-bar" v-nav-active="{
+         className:'nav-item',//子组件的类
+          currentIndex,//子组件
+          activeClass:'nav-active'//电机的类
+       }">     
+       自定义指令：一般传入子类的配置
+
+
+

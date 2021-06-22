@@ -1,0 +1,49 @@
+// 把其它平台元素跟nvue元素设置一样的特性
+/* #ifndef APP-PLUS-NVUE */
+view,input,image,scroll-view,swiper,swiper-item,text,textarea,video{
+	position: relative;
+	box-sizing: border-box;
+}
+image{
+	display: inline-block;
+}
+/* #endif */
+
+/* #ifdef APP-PLUS-NVUE */ 
+view{
+	flex-direction: row;
+}
+/* #endif */
+
+@font-face {font-family: "tpf-iconfont";
+  src: url('//at.alicdn.com/t/font_2355434_z43ddit7yyg.eot?t=1612445460857'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_2355434_z43ddit7yyg.eot?t=1612445460857#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
+  url('//at.alicdn.com/t/font_2355434_z43ddit7yyg.woff?t=1612445460857') format('woff'),
+  url('//at.alicdn.com/t/font_2355434_z43ddit7yyg.ttf?t=1612445460857') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_2355434_z43ddit7yyg.svg?t=1612445460857#tpf-iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.tpf-iconfont {
+  font-family: "tpf-iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dizhi01:before {
+  content: "\e62c";
+}
+
+.icon-youxiang:before {
+  content: "\e687";
+}
+
+.icon-dianhua:before {
+  content: "\e739";
+}
+
+.icon-you:before {
+  content: "\e695";
+}

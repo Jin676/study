@@ -1,0 +1,179 @@
+{
+	"pages": [ 
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index/index",
+			"style": {
+				"navigationBarTitleText": "TPFrame 首页",
+				"navigationBarBackgroundColor":"#00BFFF",
+				"navigationBarTextStyle":"white"
+				
+			}
+		},
+		{
+			"path": "pages/home/message/message",
+			"style": {
+				"navigationBarTitleText": "在线留言",
+				"navigationBarBackgroundColor":"#00BFFF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/home/connect/connect",
+			"style": {
+				"navigationBarTitleText": "联系我们",
+				"navigationBarBackgroundColor":"#00BFFF",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/home/user/user",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarBackgroundColor":"#00BFFF",
+				"navigationBarTextStyle":"white"
+				
+			}
+		},
+		{
+			"path":"pages/expand/web/web",
+			"style":{
+				"navigationBarTitleText":"web页面"
+			}
+		},
+		{
+			"path":"pages/cms/case/case-list",
+			"style":{
+				"navigationBarTitleText":"案例展示"
+			}
+		},
+		{
+			"path":"pages/cms/case/case-detail",
+			"style":{
+				"navigationBarTitleText":"案例详情"
+			}
+		},
+		{
+			"path":"pages/cms/photo/photo-list",
+			"style":{
+				"navigationBarTitleText":"相册展示"
+			}
+		},
+		{
+			"path":"pages/cms/photo/photo-detail",
+			"style":{
+				"navigationBarTitleText":"相册详情"
+			}
+		},
+		{
+			"path":"pages/cms/news/news-list",
+			"style":{
+				"navigationBarTitleText":"文章列表"
+			}
+		},
+		{
+		  "path": "pages/cms/news/news-detail",
+		  "style": {
+		    "app-plus": {
+		      "titleNView": {
+		        "type": "transparent"
+		      }
+		    }
+		  }
+		},
+		{
+			"path":"pages/cms/video/video-list",
+			"style":{
+				"navigationBarTitleText":"视频列表"
+			}
+		},
+		{
+		  "path": "pages/cms/about/about",
+		  "style":{
+		  	"navigationBarTitleText":"关于我们"
+		  }
+		},
+		{
+		  "path": "pages/cms/news/detail",
+		  "style":{
+		  	"navigationBarTitleText":"详情"
+		  }
+		},
+		{
+		  "path": "pages/cms/test/load_more",
+		  "style":{
+		  	"navigationBarTitleText":"加载更多原生方式"
+		  }
+		},
+		{
+		  "path": "pages/cms/test/load_more_scroll",
+		  "style":{
+		  	"navigationBarTitleText":"加载更多scroll方式"
+		  }
+		},
+		{
+		  "path": "pages/cms/test/refresh",
+		  "style":{
+		  	"navigationBarTitleText":"下拉刷新",
+			"enablePullDownRefresh":true
+		  }
+		},
+		{
+		  "path": "pages/cms/test/refresh_scroll",
+		  "style":{
+		  	"navigationBarTitleText":"下拉刷新scroll方式"
+		  }
+		},
+		{
+		  "path": "pages/cms/test/refresh_event",
+		  "style":{
+		  	"navigationBarTitleText":"下拉刷新event方式"
+		  }
+		}
+	],
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// uni-ui 规则如下配置
+			"^uni-(.*)": "@/components/uni-ui-unit/uni-$1/uni-$1.vue"
+		}
+	},
+	"tabBar":{
+		"color":"#333333",
+		"selectedColor":"#00BFFF",
+		"backgroundColor":"#f2f2f2",
+		"borderStyle":"#333333",
+		"list":[
+			{
+				"pagePath":"pages/home/index/index",
+				"text":"首页",
+				"iconPath":"static/home.png",
+				"selectedIconPath":"static/home-active.png"
+			},
+			{
+				"pagePath":"pages/home/message/message",
+				"text":"在线咨询",
+				"iconPath":"static/message.png",
+				"selectedIconPath":"static/message-active.png"
+			},
+			{
+				"pagePath":"pages/home/connect/connect",
+				"text":"联系我们",
+				"iconPath":"static/connect.png",
+				"selectedIconPath":"static/connect-active.png"
+			},
+			{
+				"pagePath":"pages/home/user/user",
+				"text":"个人中心",
+				"iconPath":"static/user.png",
+				"selectedIconPath":"static/user-active.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

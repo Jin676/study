@@ -77,3 +77,14 @@ git reset --hard 编码名  //回退回你指定的版本
 2、git commit -m “xxx”
 3、git tag v1.0.1 //每次提交后修改
 4、git tag
+
+
+远程操作：
+git remote add origin https://github.com/Jin676/study.git //远程联系
+git removete -v 查看远程仓库
+git branch -a 查看远程分支
+
+使用node版本：
+v12.16.1
+使用vue/cli版本：
+@vue/cli 4.5.6
